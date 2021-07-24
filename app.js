@@ -10,7 +10,7 @@ app.get('/hola-mundo', function (req, res) {
   })
 
   app.get('*', function (req, res) {
-    res.send('404 | Page not Found')
+    res.sendFile(__dirname + '/public/404.html');
   })
  
 app.listen(8080)
