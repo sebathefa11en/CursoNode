@@ -1,7 +1,9 @@
+require('dotenv').config();
 const express = require('express')
 const hbs = require('hbs');
 
 const app = express()
+const port = process.env.PORT;
 
 // Handlebar
 app.set('view engine', 'hbs');
@@ -19,16 +21,24 @@ app.get('/', function (req, res) {
 })
 
 app.get('/generic', function (req, res) {
-    res.sendFile(__dirname + '/public/generic.html');
+    res.render('generic',{
+        nombre: 'Sebastian Gonzalez',
+        titulo: 'Curso Node'
+    });
 })
 
 app.get('/elements', function (req, res) {
-    res.sendFile(__dirname + '/public/elements.html');
+    res.render('elements',{
+        nombre: 'Sebastian Gonzalez',
+        titulo: 'Curso Node'
+    });
   })
 
 
 app.get('*', function (req, res) {
-    res.sendFile(__dirname + '/public/404.html');
+    res.render('404');
 })
  
-app.listen(8080)
+app.listen(port, ()=>{
+    console.log(`App listening at http://localhost:${port}`);
+})
